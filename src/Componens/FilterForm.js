@@ -23,7 +23,8 @@ const FilterForm = ({ ...props }) => {
             }
     }
     const isHiddenCheck = (id, newFilterProps) => {
-        return props?.filter?.some(
+        const isHidden = props.filter.find((filterValue)=>(filterValue.id === id)).isHidden
+        return !isHidden || props?.filter?.some(
                 ({ name, topics }) => (
                     topics?.some((topic) =>
                         (topic.triggerFilterGroup.some((tfg) =>
@@ -100,7 +101,7 @@ const FilterForm = ({ ...props }) => {
             <input name="minimumPrice" value={filterProps?.minimumPrice??""} type={"number"} onChange={handleChange} placeholder="minimum Price"/>
             <input name="maximumPrice" value={filterProps?.maximumPrice??""} type={"number"} onChange={handleChange} placeholder="maximum Price" />
             <ul>
-                {props?.filter?.filter(({ isHidden, id }) => !isHidden || isHiddenCheck(id, filterProps))?.map(({ id, name, topics }, index) => (<li key={filterId+index}>
+                {props?.filter?.filter(({ isHidden, id }) => isHiddenCheck(id, filterProps))?.map(({ id, name, topics }, index) => (<li key={filterId+index}>
                     <dl>
                         <dt>
                             {name}

@@ -30,7 +30,8 @@ const Home = () => {
 
     
     const isHiddenCheck = (id, newFilterProps) => {
-        return filterData?.some(
+        const isHidden = filterData?.find((filterValue)=>(filterValue.id === id)).isHidden
+        return !isHidden || filterData?.some(
                 ({ name, topics }) => (
                     topics?.some((topic) =>
                         (topic.triggerFilterGroup.some((tfg) =>
