@@ -101,7 +101,7 @@ const FilterForm = ({ ...props }) => {
             <input name="minimumPrice" value={filterProps?.minimumPrice??""} type={"number"} onChange={handleChange} placeholder="minimum Price"/>
             <input name="maximumPrice" value={filterProps?.maximumPrice??""} type={"number"} onChange={handleChange} placeholder="maximum Price" />
             <ul>
-                {props?.filter?.filter(({ isHidden, id }) => isHiddenCheck(id, filterProps))?.map(({ id, name, topics }, index) => (<li key={filterId+index}>
+                {props?.filter?.filter(({ id }) => isHiddenCheck(id, filterProps))?.map(({ id, name, topics }, index) => (<li key={filterId+index}>
                     <dl>
                         <dt>
                             {name}
